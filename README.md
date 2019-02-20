@@ -4,7 +4,7 @@
 
 # urlの設定
 
-scraping.pyのutlにtitle.txtにあるリンクをコピペする
+scraping.pyのurlにtitle.txtにあるリンクをコピペする
 
 ```
 # 例: ポケモンカードゲーム サン&ムーン ハイクラスパック GXウルトラシャイニー
