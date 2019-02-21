@@ -55,5 +55,4 @@ class CardInfo:
       elif td != None:
         value = self.format(td.get_text())
         store[preKey].append(value)
-
-    print(store)
+    return store

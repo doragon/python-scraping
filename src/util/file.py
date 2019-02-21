@@ -15,7 +15,12 @@ class File:
     f.close
     return titles, links
 
-  def write(self, csvList):
+  def writeCsv(self, csvList):
     text = "\n".join(csvList)
-    with open('list.txt', 'w', encoding='utf-8') as f:
+    with open('csv.txt', 'w', encoding='utf-8') as f:
+      f.write(text)
+
+  def writeCardDetail(self, store):
+    text = "\n".join(store)
+    with open('card_detail.txt', 'w', encoding='utf-8') as f:
       f.write(text)

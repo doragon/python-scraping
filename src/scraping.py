@@ -35,6 +35,7 @@ table = soup.find_all('table', {'class' : 'bluetable'})[0]
 rows = table.findAll('tr')
 
 csvList = []
+storeList = []
 for row in rows:
   info = row.findAll('td')
   if len(info) != 0:
@@ -48,7 +49,15 @@ for row in rows:
     )
     csv = ci.getCsv()
     csvList.append(csv)
+    store = ci.getDetail()
+    storeList.append(str(store))
+    print(csv)
+    # print(store)
 
 # CSV出力
-f.write(csvList)
+f.writeCsv(csvList)
 print('CSV出力が完了しました。')
+
+# カード詳細情報出力
+f.writeCardDetail(storeList)
+print('カード詳細情報出力が完了しました。')
