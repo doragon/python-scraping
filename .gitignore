@@ -1,3 +1,5 @@
-settings.json
-list.txt
 *.pyc
+settings.json
+
+csv.txt
+card_detail.txt
