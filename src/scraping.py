@@ -51,4 +51,4 @@ for row in rows:
 
 # CSV出力
 f.write(csvList)
-print('CSV出力完了しました。')
+print('CSV出力が完了しました。')
