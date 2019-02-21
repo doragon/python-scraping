@@ -5,18 +5,20 @@ from data.card_info import CardInfo
 from util.file import File
 
 
+# title.txtの読み込み
 path = 'assets/title.txt'
 f = File(path)
 titles, links = f.getTitleAndLinkList()
 
+# title一覧を表示し、ユーザー入力を求める
 for i in range(len(titles)):
   print(str(i) + ' : ' + titles[i])
 print('出力したい項目を選び、番号を入力してください。')
 index = input()
-title = ''
+
+# 選択されたリンクを取得
 link = ''
 try:
-  title = titles[int(index)]
   link = links[int(index)]
 except:
   print('意図しない入力データのため、実行が終了しました。')
@@ -46,9 +48,7 @@ for row in rows:
     )
     csv = ci.getCsv()
     csvList.append(csv)
-    # print(ci.link)
-    # ci.getDetail()
-    # break
 
 # CSV出力
 f.write(csvList)
+print('CSV出力完了しました。')
