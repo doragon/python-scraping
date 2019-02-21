@@ -3,15 +3,23 @@ from bs4 import BeautifulSoup
 
 
 class CardInfo:
-  def __init__(self, no, element, name, rare):
+  def __init__(self, no, cardType, element, name, rare, link):
     self.no = no
+    self.cardType = cardType
     self.element = element
     self.name = name
     self.rare = rare
+    self.link = link
   
   def print(self):
     separator = ','
-    tmp = self.no + separator + self.element + separator + self.name + separator + self.rare
+    tmp = self.no \
+      + separator \
+      + self.element \
+      + separator \
+      + self.name \
+      + separator \
+      + self.rare
     tmp = tmp.replace('\n', '').replace(' ', '')
     print(tmp)
 
@@ -36,5 +44,7 @@ for row in rows:
       , info[1].get_text()
       , info[2].get_text()
       , info[3].get_text()
+      , info[4].get_text()
+      , info[3].a.get('href')
     )
     ci.print()
