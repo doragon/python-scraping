@@ -15,6 +15,8 @@ class CardInfo:
     separator = ','
     tmp = self.no \
       + separator \
+      + self.cardType \
+      + separator \
       + self.element \
       + separator \
       + self.name \
