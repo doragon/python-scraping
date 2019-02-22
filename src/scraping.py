@@ -8,18 +8,29 @@ from util.file import File
 # title.txtの読み込み
 path = 'assets/title.txt'
 f = File(path)
-titles, links = f.getTitleAndLinkList()
+titles = f.getTitleList()
 
 # title一覧を表示し、ユーザー入力を求める
 for i in range(len(titles)):
-  print(str(i) + ' : ' + titles[i])
+  items = titles[i].split(',')
+  if len(items) != 4:
+    continue
+  # 略称が設定されているかチェック
+  if items[0] == '' or items[0] == None:
+    continue
+  # リンクが設定されているかチェック
+  if items[3] == '' or items[3] == None:
+    continue
+  # 略称:名称(発売日)
+  print(str(i) + ' : ' + items[0] + ':' + items[1] + '(' + items[2] + ')')
 print('出力したい項目を選び、番号を入力してください。')
 index = input()
 
 # 選択されたリンクを取得
 link = ''
 try:
-  link = links[int(index)]
+  items = titles[int(index)].split(',')
+  link = items[3]
 except:
   print('意図しない入力データのため、実行が終了しました。')
   sys.exit()
@@ -49,15 +60,22 @@ for row in rows:
     )
     csv = ci.getCsv()
     csvList.append(csv)
-    store = ci.getDetail()
-    storeList.append(str(store))
-    print(csv)
-    # print(store)
+    try:
+      store = ci.getDetail()
+      storeList.append(str(store))
+      print(csv)
+    except:
+      print(csv + ' の取得に失敗しました。')
+
+# ファイル名の設定
+items = titles[int(index)].split(',')
+filename_csv = 'output/csv/' + items[0] + '_' + items[1] + '_csv.txt'
+filename_detail = 'output/detail/' + items[0] + '_' + items[1] + '_detail.txt'
 
 # CSV出力
-f.writeCsv(csvList)
+f.writeTextFile(filename_csv, csvList)
 print('CSV出力が完了しました。')
 
 # カード詳細情報出力
-f.writeCardDetail(storeList)
+f.writeTextFile(filename_detail, storeList)
 print('カード詳細情報出力が完了しました。')
