@@ -13,7 +13,7 @@ class File:
     f.close
     return titles
 
-  def writeTextFile(self, filename, list):
-    text = "\n".join(list)
-    with open(filename, 'w', encoding='utf-8') as f:
+  def writeTextFile(self, textList):
+    text = "\n".join(textList)
+    with open(self.path, 'w', encoding='utf-8') as f:
       f.write(text)
